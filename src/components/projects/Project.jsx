@@ -1,10 +1,10 @@
 import React from "react";
 
-const Project = (project) => {
+const Project = ({project}) => {
   return (
     <li>
       <button type="button" className="btn btn-blank">
-        {project.nombre}
+        {project.name}
       </button>
     </li>
   );

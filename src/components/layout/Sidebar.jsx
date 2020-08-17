@@ -1,5 +1,6 @@
 import React from "react"; //Imr
-import NewProject from "../projects/NewProject";
+import NewProject from '../projects/NewProject';
+import ProjectsList from '../projects/ProjectsList';
 
 const Sidebar = () => {
   //sfc
@@ -11,6 +12,7 @@ const Sidebar = () => {
       <NewProject />
       <div className="proyectos">
         <h2>Tus proyectos</h2>
+        <ProjectsList/>
       </div>
     </aside>
   );
