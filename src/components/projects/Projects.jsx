@@ -1,9 +1,21 @@
-import React from 'react';
+import React from "react";
 
 const Projects = () => {
-    return ( 
-        <h1>Desde Proyectos</h1>
-     );
-}
- 
+  return (
+    <div className="contenedor-app">
+      <aside>
+        {/* Formulario */}
+        {/* Listar proyectos */}
+      </aside>
+      <div className="seccion-principal">
+        <main>
+          <div className="contenedor-tareas">
+            {/* Administrar las tareas */}
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};
+
 export default Projects;
