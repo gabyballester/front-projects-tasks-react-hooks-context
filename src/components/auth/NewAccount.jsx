@@ -2,7 +2,7 @@ import React from 'react';
 
 const NewAccount = () => {
     return ( 
-        <h1>Desde Nueva Cuenta</h1>
+        <h1>Desde Proyectos</h1>
      );
 }
  
