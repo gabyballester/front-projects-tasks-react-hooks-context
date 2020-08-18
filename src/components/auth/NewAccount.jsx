@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 const NewAccount = () => {
   // State para iniciar sesión
   const [user, setUser] = useState({
-      nombre: "",
+    name: "",
     email: "",
     password: "",
-    confirmar: ""
+    confirm: "",
   });
 
   //extraemos email y password
-  const { nombre, email, password, confirmar } = user;
+  const { name, email, password, confirm } = user;
 
   const onChange = (e) => {
     setUser({
@@ -39,15 +39,14 @@ const NewAccount = () => {
       <div className="container-form sombra-dark">
         <h1>Obtener cuenta</h1>
         <form onSubmit={onSubmit}>
-
           <div className="campo-form">
             <label htmlFor="email">Nombre</label>
             <input
               type="text"
-              id="nombre"
-              name="nombre"
+              id="name"
+              name="name"
               placeholder="Tu Nombre"
-              value={nombre}
+              value={name}
               onChange={onChange}
             />
           </div>
@@ -77,13 +76,13 @@ const NewAccount = () => {
           </div>
 
           <div className="campo-form">
-            <label htmlFor="confirmar">Confirmar Password</label>
+            <label htmlFor="confirm">Confirmar Password</label>
             <input
               type="password"
-              id="confirmar"
-              name="confirmar"
+              id="confirm"
+              name="confirm"
               placeholder="Repite tu Password"
-              value={confirmar}
+              value={confirm}
               onChange={onChange}
             />
           </div>

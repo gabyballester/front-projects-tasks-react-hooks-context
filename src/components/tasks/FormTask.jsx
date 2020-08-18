@@ -9,7 +9,7 @@ const FormTask = () => {
             type="text"
             className="input-text"
             placeholder="Nombre Tarea..."
-            name="nombre"
+            name="name"
           />
         </div>
 

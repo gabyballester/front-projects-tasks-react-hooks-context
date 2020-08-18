@@ -1,9 +1,12 @@
 import React, { useReducer } from 'react';
+import { v4 as uuidv4 } from "uuid";
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
 import {
     PROJECT_FORM,
-    GET_PROJECTS
+    GET_PROJECTS,
+    ADD_PROJECT,
+    FORM_VALIDATE
 } from '../../types/index';
 
 // State inicial del proyecto
@@ -19,7 +22,8 @@ const ProjectState = props => {
 
     const initialState = {
         projects: [], //array vacío de proyectos
-        form: false // form a false para estar oculto
+        form: false, // form a false para estar oculto
+        errorform: false
     }
     // Dispatch para ejecutar las acciones
     // creo state con hook useReducer (importado)
@@ -41,19 +45,33 @@ const ProjectState = props => {
         })
     }
 
+    //Valida el formulario de errores
+    const showError = () => {
+        dispatch({ type: FORM_VALIDATE })
+    }
+
+    // Agregar nuevo proyecto, le paso el objeto project
+    const addProject = project => {
+        //modifico su id
+        project.id = uuidv4();
+        //Inserta el payload: proyecto en el state con un dispatch
+        dispatch({ type: ADD_PROJECT, payload: project })
+    }
+
     //devuelvo el context provider como value el state.form
     // dentro props.children bindeado
     return (
         <projectContext.Provider
             value={{
-
                 //state props
                 projects: state.projects,
                 form: state.form, //state en minusculas
-
+                errorform: state.errorform,
                 //functions
                 showForm, // función en 2 palabras y mayúscula la 2ª
-                getProjects
+                getProjects,
+                addProject,
+                showError
             }}
         >
             {props.children}
