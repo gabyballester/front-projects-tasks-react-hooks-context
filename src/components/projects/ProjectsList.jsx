@@ -10,9 +10,17 @@ const ProjectsList = () => {
   //hago uso del useEffect para cuando cargue, para obtener proyectos
   useEffect(() => {
     getProjects();
-  },[]);
+  }, []);
   // compruebo que hay projects de no ser así, devuelve null
-  if (projects.length === 0) return null;
+  if (projects.length === 0)
+    return (
+      <p>
+        No hay proyectos
+        <br></br>
+        <br></br>
+        Empieza creando uno
+      </p>
+    );
   // renderizado del componente
   return (
     <ul className="listado-proyectos">

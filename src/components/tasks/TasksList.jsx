@@ -6,7 +6,7 @@ const TasksList = () => {
 
   // Extraer del state 
   const projectsContext = useContext(projectContext);
-  const { project } = projectsContext;
+  const { project, deleteProject } = projectsContext;
 
   // Si no hay proyecto seleccionado muestra esto y corta ejecución
   if(!project) return <h2>Selecciona un proyecto</h2>
@@ -36,7 +36,11 @@ const TasksList = () => {
         )}
       </ul>
 
-      <button type="button" className="btn btn-eliminar">
+      <button
+      type="button"
+      className="btn btn-eliminar"
+      onClick={()=>deleteProject(currentProject.id)}
+      >
           Eliminar Proyecto &times;
       </button>
     </Fragment>

@@ -7,7 +7,8 @@ import {
     GET_PROJECTS,
     ADD_PROJECT,
     FORM_VALIDATE,
-    CURRENT_PROJECT
+    CURRENT_PROJECT,
+    DELETE_PROJECT
 } from '../../types/index';
 
 // State inicial del proyecto
@@ -62,7 +63,12 @@ const ProjectState = props => {
 
     // Selecciona el proyecto que el usuario dio clic
     const currentProject = projectId => {
-        dispatch({ type: CURRENT_PROJECT, payload: projectId  })
+        dispatch({ type: CURRENT_PROJECT, payload: projectId })
+    }
+
+    // Eliminar proyecto por id
+    const deleteProject = projectId => {
+        dispatch({ type: DELETE_PROJECT, payload: projectId })
     }
 
     //devuelvo el context provider como value el state.form
@@ -80,7 +86,8 @@ const ProjectState = props => {
                 getProjects,
                 addProject,
                 showError,
-                currentProject
+                currentProject,
+                deleteProject
             }}
         >
             {props.children}

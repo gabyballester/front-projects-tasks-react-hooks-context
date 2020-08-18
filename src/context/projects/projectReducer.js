@@ -3,7 +3,8 @@ import {
     GET_PROJECTS,
     ADD_PROJECT,
     FORM_VALIDATE,
-    CURRENT_PROJECT
+    CURRENT_PROJECT,
+    DELETE_PROJECT
 } from '../../types/index';
 
 export default (state, action) => {
@@ -43,6 +44,16 @@ export default (state, action) => {
                     //filtrará cuando sea igual a ese
                     project.id === action.payload
                 )
+            }
+
+        case DELETE_PROJECT:
+            return {
+                ...state,
+                projects: state.projects.filter(project =>
+                    //filtrará cuando sea igual a ese
+                    project.id !== action.payload
+                ),
+                project: null
             }
 
         default: return state;
