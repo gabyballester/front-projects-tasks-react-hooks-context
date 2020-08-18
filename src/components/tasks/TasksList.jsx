@@ -1,7 +1,19 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Task from "./Task";
+import projectContext from '../../context/projects/projectContext';
 
 const TasksList = () => {
+
+  // Extraer del state 
+  const projectsContext = useContext(projectContext);
+  const { project, deleteProject } = projectsContext;
+
+  // Si no hay proyecto seleccionado muestra esto y corta ejecución
+  if(!project) return <h2>Selecciona un proyecto</h2>
+
+  // Array destructuring para extraer el proyecto actual
+  const [ currentProject ] = project;
+
   const projectTasks = [
     { name: "Elegir Plataforma", completed: true },
     { name: "Elegir Colores", completed: false },
@@ -11,7 +23,7 @@ const TasksList = () => {
 
   return (
     <Fragment>
-      <h2>Proyecto: Tienda Virtual</h2>
+      <h2>Proyecto: {currentProject.name}</h2>
       <ul className="listado-tareas">
         {" "}
         {/* uso un ternario */}
@@ -24,7 +36,11 @@ const TasksList = () => {
         )}
       </ul>
 
-      <button type="button" className="btn btn-eliminar">
+      <button
+      type="button"
+      className="btn btn-eliminar"
+      onClick={()=>deleteProject(currentProject.id)}
+      >
           Eliminar Proyecto &times;
       </button>
     </Fragment>

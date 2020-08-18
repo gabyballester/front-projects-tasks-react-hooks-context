@@ -2,7 +2,9 @@ import {
     PROJECT_FORM,
     GET_PROJECTS,
     ADD_PROJECT,
-    FORM_VALIDATE
+    FORM_VALIDATE,
+    CURRENT_PROJECT,
+    DELETE_PROJECT
 } from '../../types/index';
 
 export default (state, action) => {
@@ -33,6 +35,25 @@ export default (state, action) => {
             return {
                 ...state, //copia del state
                 errorform: true // el error pasa a ser true
+            }
+
+        case CURRENT_PROJECT:
+            return {
+                ...state,
+                project: state.projects.filter(project =>
+                    //filtrará cuando sea igual a ese
+                    project.id === action.payload
+                )
+            }
+
+        case DELETE_PROJECT:
+            return {
+                ...state,
+                projects: state.projects.filter(project =>
+                    //filtrará cuando sea igual a ese
+                    project.id !== action.payload
+                ),
+                project: null
             }
 
         default: return state;
