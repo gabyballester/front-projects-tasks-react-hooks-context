@@ -39,7 +39,7 @@ export default (state, action) => {
         case CURRENT_PROJECT:
             return {
                 ...state,
-                proyect: state.projects.filter(project =>
+                project: state.projects.filter(project =>
                     //filtrará cuando sea igual a ese
                     project.id === action.payload
                 )
