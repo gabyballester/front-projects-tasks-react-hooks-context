@@ -4,17 +4,17 @@ import projectContext from "../../context/projects/projectContext";
 const NewProject = () => {
   // Obtener el state del formulario
   const projectsContext = useContext(projectContext);
-  // me traigo el form del state -> form:false y ahora showForm
-  const { form, showForm } = projectsContext;
+  // me traigo lo que necesito de projectsContext
+  const { form, showForm, addProject } = projectsContext;
 
   //state para new project
   const [newProject, saveNewProject] = useState({
     id: "", // esto lo generaremos con una librería posteriormente
-    nombre: "",
+    name: "",
   });
 
   //Extraigo propiedades del proyecto con destructuring
-  const { id, nombre } = newProject;
+  const { name } = newProject;
 
   // Función lee contenido del input y guarda estado si objeto cambia
   const onChangeProject = (e) => {
@@ -25,12 +25,16 @@ const NewProject = () => {
   };
 
   // Cuando usuario envía formulario de nuevo proyecto
-  const onSubmitProject = (e) => {
+  const onSubmitProject = e => {
     e.preventDefault();
 
-    //validar el input
+    //validar el input si está vacío
+    if (name === '') {
+      return
+    };
 
     // agregar al state
+    addProject(newProject)
 
     //reiniciar el form
   };
@@ -58,8 +62,8 @@ const NewProject = () => {
               type="text"
               className="input-text"
               placeholder="Nombre Proyecto"
-              name="nombre"
-              value={nombre}
+              name="name"
+              value={name}
               onChange={onChangeProject}
             />
 

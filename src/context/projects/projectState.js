@@ -1,11 +1,11 @@
 import React, { useReducer } from 'react';
-import {v4 as uuid} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
 import {
     PROJECT_FORM,
     GET_PROJECTS,
-    ADDING_PROJECT
+    ADD_PROJECT
 } from '../../types/index';
 
 // State inicial del proyecto
@@ -43,8 +43,12 @@ const ProjectState = props => {
         })
     }
 
+    // Agregar nuevo proyecto, le paso el objeto project
     const addProject = project => {
-        project.id = uuid.v4();
+        //modifico su id
+        project.id = uuidv4();
+        //Inserta el payload: proyecto en el state con un dispatch
+        dispatch({ type: ADD_PROJECT, payload: project })
     }
 
     //devuelvo el context provider como value el state.form
