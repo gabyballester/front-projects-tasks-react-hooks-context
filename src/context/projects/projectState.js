@@ -1,9 +1,11 @@
 import React, { useReducer } from 'react';
+import {v4 as uuid} from "uuid";
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
 import {
     PROJECT_FORM,
-    GET_PROJECTS
+    GET_PROJECTS,
+    ADDING_PROJECT
 } from '../../types/index';
 
 // State inicial del proyecto
@@ -41,6 +43,10 @@ const ProjectState = props => {
         })
     }
 
+    const addProject = project => {
+        project.id = uuid.v4();
+    }
+
     //devuelvo el context provider como value el state.form
     // dentro props.children bindeado
     return (
@@ -53,7 +59,8 @@ const ProjectState = props => {
 
                 //functions
                 showForm, // función en 2 palabras y mayúscula la 2ª
-                getProjects
+                getProjects,
+                addProject
             }}
         >
             {props.children}
