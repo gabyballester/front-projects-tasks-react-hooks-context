@@ -5,7 +5,8 @@ import projectReducer from './projectReducer';
 import {
     PROJECT_FORM,
     GET_PROJECTS,
-    ADD_PROJECT
+    ADD_PROJECT,
+    FORM_VALIDATE
 } from '../../types/index';
 
 // State inicial del proyecto
@@ -21,7 +22,8 @@ const ProjectState = props => {
 
     const initialState = {
         projects: [], //array vacío de proyectos
-        form: false // form a false para estar oculto
+        form: false, // form a false para estar oculto
+        errorform: false
     }
     // Dispatch para ejecutar las acciones
     // creo state con hook useReducer (importado)
@@ -43,6 +45,11 @@ const ProjectState = props => {
         })
     }
 
+    //Valida el formulario de errores
+    const showError = () => {
+        dispatch({ type: FORM_VALIDATE })
+    }
+
     // Agregar nuevo proyecto, le paso el objeto project
     const addProject = project => {
         //modifico su id
@@ -56,15 +63,15 @@ const ProjectState = props => {
     return (
         <projectContext.Provider
             value={{
-
                 //state props
                 projects: state.projects,
                 form: state.form, //state en minusculas
-
+                errorform: state.errorform,
                 //functions
                 showForm, // función en 2 palabras y mayúscula la 2ª
                 getProjects,
-                addProject
+                addProject,
+                showError
             }}
         >
             {props.children}
