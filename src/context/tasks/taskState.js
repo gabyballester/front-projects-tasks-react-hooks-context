@@ -4,7 +4,7 @@ import TaskReducer from './taskReducer';
 
 import {
     PROJECT_TASKS
-} from '../../types/index';
+} from '../../types';
 
 const TaskState = props => {
     const initialState = {
@@ -21,7 +21,8 @@ const TaskState = props => {
             { name: "Elegir Colores", completed: false, projectId: 3 },
             { name: "Elegir Plataformas de pago", completed: true, projectId: 4 },
             { name: "Elegir Hosting", completed: true, projectId: 3 },
-        ]
+        ],
+        projecttasks: null //en minúsculas para diferenciar de función
     }
     //Crear dispatch y state que vendrán de useReeducer
     const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -37,7 +38,10 @@ const TaskState = props => {
     return (
         <TaskContext.Provider
             value={{
+                //states
                 tasks: state.tasks,
+                projecttasks: state.projecttasks,
+                //funciones
                 getTasksByProjectId
             }}
         >
