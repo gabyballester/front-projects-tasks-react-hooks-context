@@ -14,12 +14,7 @@ const TasksList = () => {
   // Array destructuring para extraer el proyecto actual
   const [ currentProject ] = project;
 
-  const projectTasks = [
-    { name: "Elegir Plataforma", completed: true },
-    { name: "Elegir Colores", completed: false },
-    { name: "Elegir Plataformas de pago", completed: true },
-    { name: "Elegir Hosting", completed: true },
-  ];
+  const projectTasks = [];
 
   return (
     <Fragment>
