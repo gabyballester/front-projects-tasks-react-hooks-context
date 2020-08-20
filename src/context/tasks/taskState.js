@@ -3,7 +3,8 @@ import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
 
 import {
-    PROJECT_TASKS
+    PROJECT_TASKS,
+    ADD_TASK
 } from '../../types';
 
 const TaskState = props => {
@@ -31,9 +32,14 @@ const TaskState = props => {
     //Crear las funciones de
 
     //Obtener las tareas de un proyecto
-    const getTasksByProjectId = projectId=>{
-        dispatch({type: PROJECT_TASKS, payload: projectId})
+    const getTasksByProjectId = projectId => {
+        dispatch({ type: PROJECT_TASKS, payload: projectId })
     };
+
+    // Agregar una tarea al proyecto seleccionado
+    const addTask = task => { //pasamos objeto task
+        dispatch({ type: ADD_TASK, payload: task })
+    }
 
     return (
         <TaskContext.Provider
@@ -42,7 +48,8 @@ const TaskState = props => {
                 tasks: state.tasks,
                 projecttasks: state.projecttasks,
                 //funciones
-                getTasksByProjectId
+                getTasksByProjectId,
+                addTask
             }}
         >
             {props.children} {/* Esto propaga el state a sus hijos */}

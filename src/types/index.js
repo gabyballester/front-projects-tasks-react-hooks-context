@@ -7,3 +7,4 @@ export const CURRENT_PROJECT = 'CURRENT_PROJECT';
 export const DELETE_PROJECT = 'DELETE_PROJECT';
 //Acciones para tasks
 export const PROJECT_TASKS = 'PROJECT_TASKS';
+export const ADD_TASK = 'ADD_TASK';
