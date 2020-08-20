@@ -1,6 +1,7 @@
 import {
     PROJECT_TASKS,
-    ADD_TASK
+    ADD_TASK,
+    TASK_VALIDATE
 } from '../../types';
 
 export default (state, action) => {
@@ -25,7 +26,13 @@ export default (state, action) => {
                 // errorform: false, //para resetearlo
             }
 
+        case TASK_VALIDATE:
+            return {
+                ...state,
+                errortask: true
+            }
+
         default: return state;
-        
+
     }
 }

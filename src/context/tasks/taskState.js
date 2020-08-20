@@ -4,7 +4,8 @@ import TaskReducer from './taskReducer';
 
 import {
     PROJECT_TASKS,
-    ADD_TASK
+    ADD_TASK,
+    TASK_VALIDATE
 } from '../../types';
 
 const TaskState = props => {
@@ -23,7 +24,8 @@ const TaskState = props => {
             { name: "Elegir Plataformas de pago", completed: true, projectId: 4 },
             { name: "Elegir Hosting", completed: true, projectId: 3 },
         ],
-        projecttasks: null //en minúsculas para diferenciar de función
+        projecttasks: null, //en minúsculas para diferenciar de función
+        errortask: false
     }
     //Crear dispatch y state que vendrán de useReeducer
     const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -41,15 +43,22 @@ const TaskState = props => {
         dispatch({ type: ADD_TASK, payload: task })
     }
 
+    // valida y muestra un error en caso que sea necesario
+    const validateTask = () => {
+        dispatch({ type: TASK_VALIDATE})
+    }
+
     return (
         <TaskContext.Provider
             value={{
                 //states
                 tasks: state.tasks,
                 projecttasks: state.projecttasks,
+                errortask: state.errortask,
                 //funciones
                 getTasksByProjectId,
-                addTask
+                addTask,
+                validateTask
             }}
         >
             {props.children} {/* Esto propaga el state a sus hijos */}

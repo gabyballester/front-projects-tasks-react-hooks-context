@@ -8,3 +8,4 @@ export const DELETE_PROJECT = 'DELETE_PROJECT';
 //Acciones para tasks
 export const PROJECT_TASKS = 'PROJECT_TASKS';
 export const ADD_TASK = 'ADD_TASK';
+export const TASK_VALIDATE = 'TASK_VALIDATE';
