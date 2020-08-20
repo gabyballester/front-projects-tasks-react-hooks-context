@@ -22,8 +22,7 @@ export default (state, action) => {
                 tasks: [//tasks será igual a
                     ...state.tasks,//array copia del state tasks
                     action.payload],//y el payload (nueva tarea)
-                // form: false, //para ocultar el input una vez introducido
-                // errorform: false, //para resetearlo
+                errortask: false, //para resetearlo
             }
 
         case TASK_VALIDATE:

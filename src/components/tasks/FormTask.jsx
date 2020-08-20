@@ -9,7 +9,7 @@ const FormTask = () => {
 
   //Obtener función para traer tareas por id proyecto desde context
   const tasksContext = useContext(taskContext);
-  const { errortask, addTask, validateTask } = tasksContext;
+  const { errortask, addTask, validateTask, getTasksByProjectId } = tasksContext;
 
   // state del formulario, traigo saveTask
   const [task, saveTask] = useState({
@@ -42,14 +42,19 @@ const FormTask = () => {
       validateTask();
       return;
     }
-    // pasar la validación de
-
+    
     // agregar la tarea al state de TAREAS
     task.projectId = currentProject.id; // traigo id proyecto actual
     task.completed = false; // estado false
     addTask(task); // le paso el objeto tarea
 
+    // Obtener tareas del proyecto actual
+    getTasksByProjectId(currentProject.id)
+
     //reiniciar el form
+    saveTask({
+      name: ''
+    })
   };
 
   return (
