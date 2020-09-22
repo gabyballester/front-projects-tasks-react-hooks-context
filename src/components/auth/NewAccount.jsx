@@ -1,14 +1,33 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AlertContext from "../../context/alerts/alertContext";
+import AuthContext from "../../context/authentication/authContext";
 
 const NewAccount = (props) => {
-  // Extraigo los valores del context (alert y showAlert)
+  // Extraigo los valores de los context
+  // alert
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
+  // auth
+  const authContext = useContext(AuthContext);
+  const { message, authenticated, registerUser } = authContext;
   // propiedades de la alerta
   let msg = "";
   let category = "";
+
+  // En caso de usuario duplicado, creado o autenticado
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push("/projects");
+    }
+    if (message) {
+      //En caso de haber mensaje
+      showAlert(
+        (msg = message.msg),
+        (category = message.category)
+      );
+    }
+  }, [message, authenticated, props.history]); //dependencias a escuchar
 
   // State para iniciar sesión
   const [user, setUser] = useState({
@@ -19,7 +38,13 @@ const NewAccount = (props) => {
   });
 
   //extraemos propiedades de usuario
-  const { name, email, password, confirm } = user;
+  let { name, email, password, confirm } = user;
+
+  //esto lo borro luego
+  name = "asdf";
+  email = "asdf@asdf.es";
+  password = "asdfasdf";
+  confirm = "asdfasdf";
 
   const onChange = (e) => {
     setUser({
@@ -32,7 +57,6 @@ const NewAccount = (props) => {
   // Manejo de onSubmit - iniciar sesión
   const onSubmit = (e) => {
     e.preventDefault();
-
     //1.Validar que no haya campos vacíos
     if (
       name.trim() === "" ||
@@ -63,7 +87,14 @@ const NewAccount = (props) => {
       return;
     }
 
-    //5. Pasarlo al action
+    //5. Pasarlo al action para registrar
+    const newUser = {
+      //en back es nombre no name
+      nombre: name,
+      email,
+      password,
+    };
+    registerUser(newUser);
   };
 
   return (

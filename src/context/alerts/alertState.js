@@ -31,7 +31,9 @@ const AlertState = props => {
     return (
         <alertContext.Provider
             value={{
+                // Propiedades
                 alert: state.alert, //estado de alerta
+                // Funciones
                 showAlert // función mostrar alerta
             }}
         > {/* el reste de componentes y props que requerimos */}
