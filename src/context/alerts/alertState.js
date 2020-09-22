@@ -14,14 +14,11 @@ const AlertState = props => {
     const [state, dispatch] = useReducer(alertReducer, initialState);
 
     //Funciones
-    const showAlert = (alertObject) => {
-
+    const showAlert = (msg, category) => {
+        
         dispatch({
             type: SHOW_ALERT,
-            payload: {
-                msg: alertObject.msg,
-                category: alertObject.category
-            }
+            payload:{msg, category}
         });
 
         setTimeout(() => {

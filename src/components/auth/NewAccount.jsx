@@ -6,6 +6,9 @@ const NewAccount = (props) => {
   // Extraigo los valores del context (alert y showAlert)
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
+  // propiedades de la alerta
+  let msg = "";
+  let category = "";
 
   // State para iniciar sesión
   const [user, setUser] = useState({
@@ -29,6 +32,7 @@ const NewAccount = (props) => {
   // Manejo de onSubmit - iniciar sesión
   const onSubmit = (e) => {
     e.preventDefault();
+
     //1.Validar que no haya campos vacíos
     if (
       name.trim() === "" ||
@@ -36,17 +40,30 @@ const NewAccount = (props) => {
       password.trim() === "" ||
       confirm.trim() === ""
     ) {
-      //2.Si esto sucede, creamos objeto de alerta con propiedades a pasar
-      const alertObject = {
-        msg: "Todos los campos son obligatorios", //Mensaje a mostrar
-        category: "alerta-error", // clase a aplicar al elemento
-      };
-      //3. LLamo a la función showAlert y le paso el objeto
-      showAlert(alertObject);
+      //2.Si esto sucede, lLamo a la función showAlert y le paso los params
+      showAlert(
+        (msg = "Todos los campos son obligatorios"),
+        (category = "alerta-error")
+      );
+      return;
     }
-    //Password length minimo 6
-    // Passwords coinciden
-    //Pasarlo al action
+
+    // 3. Password length minimo 6
+    if (password.length < 6) {
+      showAlert(
+        (msg = "Longitud password mínimo 6 caracteres"),
+        (category = "alerta-error")
+      );
+      return;
+    }
+
+    // 4. Passwords coinciden
+    if (password !== confirm) {
+      showAlert((msg = "Passwords no coinciden"), (category = "alerta-error"));
+      return;
+    }
+
+    //5. Pasarlo al action
   };
 
   return (
