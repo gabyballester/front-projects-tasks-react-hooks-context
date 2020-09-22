@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import AlertContext from "../../context/alerts/alertContext";
 
-const NewAccount = () => {
+const NewAccount = (props) => {
+  // Extraigo los valores del context (alert y showAlert)
+  const alertContext = useContext(AlertContext);
+  const { alert, showAlert } = alertContext;
+
   // State para iniciar sesión
   const [user, setUser] = useState({
     name: "",
@@ -10,7 +15,7 @@ const NewAccount = () => {
     confirm: "",
   });
 
-  //extraemos email y password
+  //extraemos propiedades de usuario
   const { name, email, password, confirm } = user;
 
   const onChange = (e) => {
@@ -24,18 +29,32 @@ const NewAccount = () => {
   // Manejo de onSubmit - iniciar sesión
   const onSubmit = (e) => {
     e.preventDefault();
-
-    //validar que no haya campos vacíos
-
+    //1.Validar que no haya campos vacíos
+    if (
+      name.trim() === "" ||
+      email.trim() === "" ||
+      password.trim() === "" ||
+      confirm.trim() === ""
+    ) {
+      //2.Si esto sucede, creamos objeto de alerta con propiedades a pasar
+      const alertObject = {
+        msg: "Todos los campos son obligatorios", //Mensaje a mostrar
+        category: "alerta-error", // clase a aplicar al elemento
+      };
+      //3. LLamo a la función showAlert y le paso el objeto
+      showAlert(alertObject);
+    }
     //Password length minimo 6
-
     // Passwords coinciden
-
     //Pasarlo al action
   };
 
   return (
     <div className="form-usuario">
+      {/* Mensaje de alerta */}
+      {alert ? (
+        <div className={`alerta ${alert.category}`}>{alert.msg}</div>
+      ) : null}
       <div className="container-form sombra-dark">
         <h1>Obtener cuenta</h1>
         <form onSubmit={onSubmit}>

@@ -9,3 +9,6 @@ export const DELETE_PROJECT = 'DELETE_PROJECT';
 export const PROJECT_TASKS = 'PROJECT_TASKS';
 export const ADD_TASK = 'ADD_TASK';
 export const TASK_VALIDATE = 'TASK_VALIDATE';
+//Acciones para alerts
+export const SHOW_ALERT = 'SHOW_ALERT';
+export const HIDE_ALERT = 'HIDE_ALERT';
