@@ -40,12 +40,6 @@ const NewAccount = (props) => {
   //extraemos propiedades de usuario
   let { name, email, password, confirm } = user;
 
-  //esto lo borro luego
-  name = "asdf";
-  email = "asdf@asdf.es";
-  password = "asdfasdf";
-  confirm = "asdfasdf";
-
   const onChange = (e) => {
     setUser({
       ...user,
@@ -99,7 +93,7 @@ const NewAccount = (props) => {
 
   return (
     <div className="form-usuario">
-      {/* Mensaje de alerta */}
+      {/* Mensaje de alerta en caso de error */}
       {alert ? (
         <div className={`alerta ${alert.category}`}>{alert.msg}</div>
       ) : null}
