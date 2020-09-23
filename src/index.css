@@ -122,6 +122,10 @@ a {
 
 }
 
+.cerrar-sesion {
+  color: var(--blanco);
+}
+
 /* BARRA LATERAL */
 aside {
   padding: 3rem;

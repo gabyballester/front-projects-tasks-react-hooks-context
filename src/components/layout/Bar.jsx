@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import AuthContext from "../../context/authentication/authContext";
 
 const Bar = () => {
+  // Extraer la información de autenticación
+  // Ponemos disonible authContext y sus diferentes propiedades/funciones
+  const authContext = useContext(AuthContext);
+  const { user, getAuthUserFromLocalStorage, logOut } = authContext;
+  // Si el usuario autenticado cambia, useEffect hará el cambio
+  useEffect(() => {
+    getAuthUserFromLocalStorage();
+  }, []);
+
   return (
-      <header className="app-header">
+    <header className="app-header">
+      {user ? (
         <p className="nombre-usuario">
-          Hola <span>Gabriel Ballester</span>{" "}
+          Hola <span>{user.nombre}</span>
         </p>
-        <nav className="nav-principal">
-        <a href="#!">Cerrar Sesión</a>
+      ) : null}
+
+      <nav className="nav-principal">
+        <button
+        className="btn btn-blank cerrar-sesion"
+        onClick={()=>  logOut()}
+        >Cerrar Sesión</button>
       </nav>
-      </header>
+    </header>
   );
 };
 

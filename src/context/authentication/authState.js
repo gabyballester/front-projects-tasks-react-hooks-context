@@ -21,6 +21,7 @@ const AuthState = props => {
         authenticated: null,
         user: null,
         message: null,
+        loading: true
     }
 
     // destructuring de 
@@ -96,6 +97,11 @@ const AuthState = props => {
         }
     }
 
+    //Cerrar sesión usuario
+    const logOut = () => {
+        dispatch({ type: LOG_OUT })
+    }
+
     return (
         <authContext.Provider
             value={{
@@ -104,10 +110,12 @@ const AuthState = props => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
+                loading: state.loading,
                 //functions
                 registerUser,
                 userLogin,
-                getAuthUserFromLocalStorage
+                getAuthUserFromLocalStorage,
+                logOut
             }}
         > {/* el reste de componentes y props que requerimos */}
             { props.children}

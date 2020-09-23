@@ -10,7 +10,10 @@ export default (state, action) => {
         case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token);
             return {
-                ...state, authenticated: true, message: null
+                ...state,
+                authenticated: true,
+                message: null,
+                loading: false
             }
         case GET_AUTH_USER:
             const token = localStorage.getItem('token');
@@ -18,13 +21,20 @@ export default (state, action) => {
             console.log(action.payload);
             return {
                 ...state, user: action.payload.user,
-                token: action.payload.token, authenticated: true
+                token: action.payload.token, authenticated: true,
+                loading: false
             }
         case REGISTER_ERROR:
         case LOGIN_ERROR:
+        case LOG_OUT:
             localStorage.removeItem('token');
             return {
-                ...state, token: null, message: action.payload
+                ...state,
+                token: null,
+                user: null,
+                authenticated: null,
+                message: action.payload,
+                loading: false
             }
         default: return state;
     }
