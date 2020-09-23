@@ -35,7 +35,8 @@ const Login = (props) => {
   });
 
   //extraemos email y password
-  const { email, password } = user;
+  let { email, password } = user;
+  // const { email, password } = user;
 
   const onChange = (e) => {
     setUser({
@@ -47,6 +48,8 @@ const Login = (props) => {
 
   // Manejo de onSubmit - iniciar sesión
   const onSubmit = (e) => {
+    email ="asdf@asdf.es";
+    password="asdfasdf";
     e.preventDefault();
     //validar que no haya campos vacíos
     if (email.trim() === "" || password.trim() === "") {

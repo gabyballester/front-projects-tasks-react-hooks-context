@@ -8,6 +8,16 @@ import ProjectState from './context/projects/projectState';
 import TaskState from './context/tasks/taskState';
 import AlertState from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
+import tokenAuth from './config/token';
+
+// Revisar si tenemos un token
+const token = localStorage.getItem('token');
+console.log('app.js revisando si tiene token??');
+if(token){
+  console.log('app.js tiene token y lo envía a los headers!!');
+  console.log(token);
+  tokenAuth(token);
+}
 
 function App() {
   console.log(process.env.REACT_APP_BACKEND_URL);

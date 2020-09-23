@@ -9,7 +9,7 @@ import tokenAuth from '../../config/token';
 import {
     REGISTER_SUCCESS,
     REGISTER_ERROR,
-    GET_USER,
+    GET_AUTH_USER,
     LOGIN_SUCCESS,
     LOGIN_ERROR,
     LOG_OUT
@@ -61,8 +61,11 @@ const AuthState = props => {
         try {
             const response = await clienteAxios.get('api/auth');
             dispatch({
-                type: GET_USER,
-                payload: response.data.user
+                type: GET_AUTH_USER,
+                payload: {
+                    user: response.data.user,
+                    token: token
+                }
             })
         } catch (error) {
             console.log(error);
@@ -76,7 +79,7 @@ const AuthState = props => {
             const response = await clienteAxios.post('/api/auth', data);
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: response.data
+                payload: response.data,
             })
             //Obtener el usuario
             getAuthUserFromLocalStorage()
@@ -103,7 +106,8 @@ const AuthState = props => {
                 message: state.message,
                 //functions
                 registerUser,
-                userLogin
+                userLogin,
+                getAuthUserFromLocalStorage
             }}
         > {/* el reste de componentes y props que requerimos */}
             { props.children}
