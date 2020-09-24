@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react'
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
+import clienteAxios from '../../config/axios';
 
 import {
     PROJECT_TASKS,
@@ -10,21 +11,7 @@ import {
 
 const TaskState = props => {
     const initialState = {
-        tasks: [
-            { name: "Elegir Plataforma", completed: true, projectId: 1 },
-            { name: "Elegir Colores", completed: false, projectId: 2 },
-            { name: "Elegir Plataformas de pago", completed: true, projectId: 3 },
-            { name: "Elegir Hosting", completed: true, projectId: 4 },
-            { name: "Elegir Plataforma", completed: true, projectId: 2 },
-            { name: "Elegir Colores", completed: false, projectId: 3 },
-            { name: "Elegir Plataformas de pago", completed: true, projectId: 4 },
-            { name: "Elegir Hosting", completed: true, projectId: 1 },
-            { name: "Elegir Plataforma", completed: true, projectId: 2 },
-            { name: "Elegir Colores", completed: false, projectId: 3 },
-            { name: "Elegir Plataformas de pago", completed: true, projectId: 4 },
-            { name: "Elegir Hosting", completed: true, projectId: 3 },
-        ],
-        projecttasks: null, //en minúsculas para diferenciar de función
+        projecttasks: [], //en minúsculas para diferenciar de función
         errortask: false
     }
     //Crear dispatch y state que vendrán de useReeducer
@@ -34,25 +21,40 @@ const TaskState = props => {
     //Crear las funciones de
 
     //Obtener las tareas de un proyecto
-    const getTasksByProjectId = projectId => {
-        dispatch({ type: PROJECT_TASKS, payload: projectId })
+    const getTasksByProjectId = async project => {
+        const result = await clienteAxios.get('/api/tareas',
+            { params: { project } }
+        )
+        console.log(result);
+        try {
+            dispatch({ type: PROJECT_TASKS, payload: result.data.tareas })
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     // Agregar una tarea al proyecto seleccionado
-    const addTask = task => { //pasamos objeto task
-        dispatch({ type: ADD_TASK, payload: task })
+    const addTask = async task => { //pasamos objeto task
+        task.nombre = task.name;
+        console.log(task);
+        try {
+            const result = await clienteAxios.post('/api/tareas', task)
+            console.log(result);
+            dispatch({ type: ADD_TASK, payload: task })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // valida y muestra un error en caso que sea necesario
     const validateTask = () => {
-        dispatch({ type: TASK_VALIDATE})
+        dispatch({ type: TASK_VALIDATE })
     }
 
     return (
         <TaskContext.Provider
             value={{
                 //states
-                tasks: state.tasks,
                 projecttasks: state.projecttasks,
                 errortask: state.errortask,
                 //funciones

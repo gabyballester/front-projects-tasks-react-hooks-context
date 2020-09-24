@@ -44,8 +44,7 @@ const FormTask = () => {
     }
     
     // agregar la tarea al state de TAREAS
-    task.projectId = currentProject.id; // traigo id proyecto actual
-    task.completed = false; // estado false
+    task.proyecto = currentProject._id; // traigo id proyecto actual
     addTask(task); // le paso el objeto tarea
 
     // Obtener tareas del proyecto actual

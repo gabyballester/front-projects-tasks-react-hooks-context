@@ -10,6 +10,11 @@ export const PROJECT_ERROR = 'PROJECT_ERROR';
 export const PROJECT_TASKS = 'PROJECT_TASKS';
 export const ADD_TASK = 'ADD_TASK';
 export const TASK_VALIDATE = 'TASK_VALIDATE';
+export const TASK_STATE = 'TASK_STATE';
+export const TASK_UPDATE = 'TASK_UPDATE';
+export const CURRENT_TASK = 'CURRENT_TASK';
+export const CLEAN_TASK = 'CLEAN_TASK';
+export const TASK_DELETE = 'TASK_DELETE';
 //Acciones para alerts
 export const SHOW_ALERT = 'SHOW_ALERT';
 export const HIDE_ALERT = 'HIDE_ALERT';

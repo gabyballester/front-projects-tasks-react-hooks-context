@@ -1,7 +1,6 @@
 import {
-    PROJECT_TASKS,
-    ADD_TASK,
-    TASK_VALIDATE
+    PROJECT_TASKS, ADD_TASK, TASK_VALIDATE, TASK_DELETE,
+    TASK_UPDATE, TASK_STATE, CURRENT_TASK, CLEAN_TASK
 } from '../../types';
 
 export default (state, action) => {
@@ -11,16 +10,14 @@ export default (state, action) => {
             return {
                 ...state, // paso copia del state
                 //filtro tasks por project id
-                projecttasks: state.tasks.filter(
-                    task => task.projectId === action.payload
-                )
+                projecttasks: action.payload
             }
 
         case ADD_TASK:
             return {
                 ...state, // paso copia de todo el state
-                tasks: [//tasks será igual a
-                    ...state.tasks,//array copia del state tasks
+                projecttasks: [//tasks será igual a
+                    ...state.projecttasks,//array copia del state tasks
                     action.payload],//y el payload (nueva tarea)
                 errortask: false, //para resetearlo
             }
@@ -31,7 +28,28 @@ export default (state, action) => {
                 errortask: true
             }
 
-        default: return state;
+        case TASK_DELETE:
+            return {
+                ...state, // paso copia del state
+                projecttasks: state.projecttasks.filter(task => task._id !== action.payload)
+            }
 
+        case TASK_UPDATE:
+        case TASK_STATE:
+            return {
+                ...state, projecttasks: state.projecttasks.map(task => task._id !== action.payload.id)
+            }
+
+        case CURRENT_TASK:
+            return {
+                ...state, selectedtask: action.payload
+            }
+
+        case CLEAN_TASK:
+            return {
+                ...state, selectedtask: null
+            }
+
+        default: return state;
     }
 }

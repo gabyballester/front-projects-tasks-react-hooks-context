@@ -3,7 +3,7 @@ import React from "react";
 const Task = ({ task }) => {
   return (
     <li className="tarea sombra">
-      <p>{task.name}</p>
+      <p>{task.nombre}</p>
 
       <div className="estado">
         {task.completed ? (
