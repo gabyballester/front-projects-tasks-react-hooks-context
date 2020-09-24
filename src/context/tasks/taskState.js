@@ -6,7 +6,8 @@ import clienteAxios from '../../config/axios';
 import {
     PROJECT_TASKS,
     ADD_TASK,
-    TASK_VALIDATE
+    TASK_VALIDATE,
+    TASK_DELETE
 } from '../../types';
 
 const TaskState = props => {
@@ -51,6 +52,20 @@ const TaskState = props => {
         dispatch({ type: TASK_VALIDATE })
     }
 
+    // Eliminar tarea por id
+    const deleteTask = async (id, project) => {
+        try {
+            await clienteAxios.delete(`/api/tareas/${id}`,
+                { params: { project } })
+            dispatch({
+                type: TASK_DELETE,
+                payload: id
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <TaskContext.Provider
             value={{
@@ -60,7 +75,8 @@ const TaskState = props => {
                 //funciones
                 getTasksByProjectId,
                 addTask,
-                validateTask
+                validateTask,
+                deleteTask
             }}
         >
             {props.children} {/* Esto propaga el state a sus hijos */}

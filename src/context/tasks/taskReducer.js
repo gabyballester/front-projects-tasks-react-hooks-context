@@ -30,8 +30,10 @@ export default (state, action) => {
 
         case TASK_DELETE:
             return {
-                ...state, // paso copia del state
-                projecttasks: state.projecttasks.filter(task => task._id !== action.payload)
+                ...state, // paso copia del state y filtro todas excepto la que le paso
+                projecttasks: state.projecttasks.filter(
+                    task => task._id !== action.payload
+                )
             }
 
         case TASK_UPDATE:
