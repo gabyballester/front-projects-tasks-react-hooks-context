@@ -1,10 +1,6 @@
 import {
-    PROJECT_FORM,
-    GET_PROJECTS,
-    ADD_PROJECT,
-    FORM_VALIDATE,
-    CURRENT_PROJECT,
-    DELETE_PROJECT
+    PROJECT_FORM, GET_PROJECTS, ADD_PROJECT, FORM_VALIDATE,
+    CURRENT_PROJECT, DELETE_PROJECT, PROJECT_ERROR
 } from '../../types/index';
 
 export default (state, action) => {
@@ -42,7 +38,7 @@ export default (state, action) => {
                 ...state,
                 project: state.projects.filter(project =>
                     //filtrará cuando sea igual a ese
-                    project.id === action.payload
+                    project._id === action.payload
                 )
             }
 
@@ -51,9 +47,13 @@ export default (state, action) => {
                 ...state,
                 projects: state.projects.filter(project =>
                     //filtrará cuando sea igual a ese
-                    project.id !== action.payload
+                    project._id !== action.payload
                 ),
                 project: null
+            }
+        case PROJECT_ERROR:
+            return {
+                ...state, message: action.payload
             }
 
         default: return state;

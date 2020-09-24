@@ -20,9 +20,13 @@ const TasksList = () => {
 
   const projectTasks = [];
 
+  const onClickDelete = () => {
+    deleteProject(currentProject._id);
+  };
+
   return (
     <Fragment>
-      <h2>Proyecto: {currentProject.name}</h2>
+      <h2>Proyecto: {currentProject.nombre}</h2>
       <ul className="listado-tareas">
         {" "}
         {/* uso un ternario */}
@@ -38,7 +42,7 @@ const TasksList = () => {
       <button
         type="button"
         className="btn btn-eliminar"
-        onClick={() => deleteProject(currentProject.id)}
+        onClick={onClickDelete}
       >
         Eliminar Proyecto &times;
       </button>

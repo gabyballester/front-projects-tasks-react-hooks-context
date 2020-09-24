@@ -16,9 +16,6 @@ export default (state, action) => {
                 loading: false
             }
         case GET_AUTH_USER:
-            const token = localStorage.getItem('token');
-            console.log('consoleo el payload');
-            console.log(action.payload);
             return {
                 ...state, user: action.payload.user,
                 token: action.payload.token, authenticated: true,
