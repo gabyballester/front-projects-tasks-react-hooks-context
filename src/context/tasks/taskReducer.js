@@ -14,12 +14,13 @@ export default (state, action) => {
             }
 
         case ADD_TASK:
+            console.log(action.payload);
             return {
                 ...state, // paso copia de todo el state
                 projecttasks: [//tasks será igual a
                     ...state.projecttasks,//array copia del state tasks
                     action.payload],//y el payload (nueva tarea)
-                errortask: false, //para resetearlo
+                errortask: false //para resetearlo
             }
 
         case VALIDATE_TASK:
