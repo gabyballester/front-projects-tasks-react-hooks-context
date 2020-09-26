@@ -13,7 +13,7 @@ const Projects = () => {
   // Si el usuario autenticado cambia, useEffect hará el cambio
   useEffect(() => {
     getAuthUserFromLocalStorage();
-  }, []);
+  }, [getAuthUserFromLocalStorage]);
 
   return (
     <div className="contenedor-app">

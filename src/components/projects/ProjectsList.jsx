@@ -21,6 +21,7 @@ const ProjectsList = () => {
       showAlert(message.msg, message.category);
     }
     getProjects();
+    // eslint-disable-next-line
   }, [message]);
 
   // compruebo que hay projects de no ser así, devuelve null

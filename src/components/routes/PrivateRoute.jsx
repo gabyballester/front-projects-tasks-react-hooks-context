@@ -9,6 +9,7 @@ const PrivateRoute = ({ component: Component, ...props }) => {
 
   useEffect(() => {
     getAuthUserFromLocalStorage();
+    // eslint-disable-next-line
   }, []);
 
   return (

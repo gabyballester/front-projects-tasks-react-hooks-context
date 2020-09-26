@@ -12,21 +12,25 @@ const NewAccount = (props) => {
   const authContext = useContext(AuthContext);
   const { message, authenticated, registerUser } = authContext;
   // propiedades de la alerta
+  // eslint-disable-next-line
   let msg = "";
+  // eslint-disable-next-line
   let category = "";
+
 
   // En caso de usuario duplicado, creado o autenticado
   useEffect(() => {
     if (authenticated) {
       props.history.push("/projects");
     }
-    if (message) {
-      //En caso de haber mensaje
-      showAlert(
-        (msg = message.msg),
-        (category = message.category)
-      );
-    }
+      if (message) {
+        // eslint-disable-next-line
+        msg = message.msg;
+        // eslint-disable-next-line
+        category = message.category
+        //En caso de haber mensaje
+        showAlert(msg, category);
+      }
   }, [message, authenticated, props.history]); //dependencias a escuchar
 
   // State para iniciar sesión

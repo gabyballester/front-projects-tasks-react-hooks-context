@@ -12,7 +12,9 @@ const Login = (props) => {
   const authContext = useContext(AuthContext);
   const { message, authenticated, userLogin } = authContext;
   // propiedades de la alerta
+  // eslint-disable-next-line
   let msg = "";
+  // eslint-disable-next-line
   let category = "";
 
   // En caso de que el password o usuario no exista
@@ -21,8 +23,12 @@ const Login = (props) => {
         props.history.push("/projects");
       }
       if (message) {
+        // eslint-disable-next-line
+        msg = message.msg;
+        // eslint-disable-next-line
+        category = message.category
         //En caso de haber mensaje
-        showAlert((msg = message.msg), (category = message.category));
+        showAlert(msg, category);
       }
     },
     [message, authenticated, props.history]

@@ -9,6 +9,7 @@ const Bar = () => {
   // Si el usuario autenticado cambia, useEffect hará el cambio
   useEffect(() => {
     getAuthUserFromLocalStorage();
+    //eslint-disable-next-line
   }, []);
 
   return (

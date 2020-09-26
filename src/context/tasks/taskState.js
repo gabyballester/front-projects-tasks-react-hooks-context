@@ -31,7 +31,6 @@ const TaskState = props => {
         const result = await clienteAxios.get('/api/tareas',
             { params: { project } }
         )
-        console.log(result);
         try {
             dispatch({ type: PROJECT_TASKS, payload: result.data.tareas })
         } catch (error) {
@@ -81,7 +80,6 @@ const TaskState = props => {
 
     // actualiza tarea
     const updateTask = async task => {
-        console.log('entra updateTask');
         try {
             const result = await clienteAxios
                 .put(`/api/tareas/${task._id}`, task)

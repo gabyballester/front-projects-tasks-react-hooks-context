@@ -21,16 +21,14 @@ const FormTask = () => {
 
   // Effect que detecta si hay una tarea seleccionada
   useEffect(() => {
-    console.log("entra en useEffect");
-    console.log(nombre);
     if (selectedtask !== null) {
       saveTask(selectedtask);
     } else {
-      console.log("solo nombre");
       saveTask({
         nombre: "",
       });
     }
+    // eslint-disable-next-line
   }, [selectedtask]);
 
   // state del formulario, traigo saveTask

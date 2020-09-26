@@ -18,8 +18,6 @@ const TasksList = () => {
   // Array destructuring para extraer el proyecto actual
   const [currentProject] = project;
 
-  const projectTasks = [];
-
   const onClickDelete = () => {
     deleteProject(currentProject._id);
   };
@@ -35,7 +33,7 @@ const TasksList = () => {
             <p>No hay tareas</p>
           </li>
         ) : (
-          projecttasks.map((task) => <Task task={task} />)
+          projecttasks.map((task) => <Task key={task._id} task={task} />)
         )}
       </ul>
 
