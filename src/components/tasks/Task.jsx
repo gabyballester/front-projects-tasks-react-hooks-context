@@ -49,7 +49,7 @@ const Task = ({ task }) => {
         {task.estado ? (
           <button
             type="button"
-            className="completo"
+            className="btn btn-primary completo"
             onClick={() => changeState(task)}
           >
             Completo
@@ -57,7 +57,7 @@ const Task = ({ task }) => {
         ) : (
           <button
             type="button"
-            className="incompleto"
+            className="btn btn-primary incompleto"
             onClick={() => changeState(task)}
           >
             Incompleto

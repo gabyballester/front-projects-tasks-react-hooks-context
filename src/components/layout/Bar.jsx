@@ -12,6 +12,10 @@ const Bar = () => {
     //eslint-disable-next-line
   }, []);
 
+  const closeSession = _ =>{
+    logOut()
+  }
+
   return (
     <header className="app-header">
       {user ? (
@@ -23,7 +27,7 @@ const Bar = () => {
       <nav className="nav-principal">
         <button
         className="btn btn-blank cerrar-sesion"
-        onClick={()=>  logOut()}
+        onClick={()=> closeSession() }
         >Cerrar Sesión</button>
       </nav>
     </header>

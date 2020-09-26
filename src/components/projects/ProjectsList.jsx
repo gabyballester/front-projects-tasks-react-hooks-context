@@ -36,7 +36,7 @@ const ProjectsList = () => {
 
   // renderizado del componente
   return (
-    <ul className="listado-proyectos">
+    <ul className="listado-tareas">
       {alert ? (
         <div className={`alerta ${alert.category}`}>{alert.msg}</div>
       ) : null}
