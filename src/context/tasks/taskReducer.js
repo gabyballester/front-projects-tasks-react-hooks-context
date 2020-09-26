@@ -14,7 +14,6 @@ export default (state, action) => {
             }
 
         case ADD_TASK:
-            console.log(action.payload);
             return {
                 ...state, // paso copia de todo el state
                 projecttasks: [//tasks será igual a

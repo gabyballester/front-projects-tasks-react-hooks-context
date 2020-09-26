@@ -43,7 +43,8 @@ const TaskState = props => {
         console.log('entra addTask');
         try {
             const result = await clienteAxios.post('/api/tareas', task)
-            dispatch({ type: ADD_TASK, payload: task })
+            console.log(result);
+            dispatch({ type: ADD_TASK, payload: result.data.tarea })
         } catch (error) {
             console.log(error);
         }

@@ -21,14 +21,14 @@ const Project = ({ project }) => {
   };
 
   return (
-    <li>
-      <button
+    <li className="proyecto sombra">
+      <div
         type="button"
         className="btn btn-blank"
         onClick={() => selectProject(project._id)}
       >
-        {project.nombre}
-      </button>
+       <h3>{project.nombre}</h3>
+      </div>
     </li>
   );
 };

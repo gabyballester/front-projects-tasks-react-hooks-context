@@ -145,6 +145,16 @@ aside {
   color: var(--gris2);
 }
 
+.proyecto {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--blanco);
+  padding: .5rem 2rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+}
+
 .proyectos {
   margin-top: 10rem;
 }
@@ -233,7 +243,6 @@ aside {
   align-items: center;
   margin-bottom: 1rem;
   border-radius: .5rem;
-
 }
 
 .sombra {
