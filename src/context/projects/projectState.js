@@ -5,7 +5,7 @@ import {
     PROJECT_FORM,
     GET_PROJECTS,
     ADD_PROJECT,
-    FORM_VALIDATE,
+    VALIDATE_FORM,
     CURRENT_PROJECT,
     DELETE_PROJECT,
     PROJECT_ERROR
@@ -63,7 +63,6 @@ const ProjectState = props => {
         project.nombre = project.name;
         try {
             const result = await clienteAxios.post('/api/proyectos', project)
-            console.log(result);
             //Inserta el payload: proyecto en el state con un dispatch
             dispatch({ type: ADD_PROJECT, payload: result.data.proyecto })
         } catch (error) {
@@ -81,7 +80,7 @@ const ProjectState = props => {
 
     //Valida el formulario de errores
     const showError = () => {
-        dispatch({ type: FORM_VALIDATE })
+        dispatch({ type: VALIDATE_FORM })
     }
 
     // Selecciona el proyecto que el usuario dio clic

@@ -1,5 +1,5 @@
 import {
-    PROJECT_FORM, GET_PROJECTS, ADD_PROJECT, FORM_VALIDATE,
+    PROJECT_FORM, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM,
     CURRENT_PROJECT, DELETE_PROJECT, PROJECT_ERROR
 } from '../../types/index';
 
@@ -27,7 +27,7 @@ export default (state, action) => {
                 errorform: false, //para resetearlo
             }
 
-        case FORM_VALIDATE:
+        case VALIDATE_FORM:
             return {
                 ...state, //copia del state
                 errorform: true // el error pasa a ser true

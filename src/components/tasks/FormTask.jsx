@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import projectContext from "../../context/projects/projectContext";
 import taskContext from "../../context/tasks/taskContext";
 
@@ -9,15 +9,37 @@ const FormTask = () => {
 
   //Obtener función para traer tareas por id proyecto desde context
   const tasksContext = useContext(taskContext);
-  const { errortask, addTask, validateTask, getTasksByProjectId } = tasksContext;
+  const {
+    errortask,
+    selectedtask,
+    addTask,
+    validateTask,
+    getTasksByProjectId,
+    updateTask,
+    cleanTask
+  } = tasksContext;
+
+  // Effect que detecta si hay una tarea seleccionada
+  useEffect(() => {
+    console.log("entra en useEffect");
+    console.log(nombre);
+    if (selectedtask !== null) {
+      saveTask(selectedtask);
+    } else {
+      console.log("solo nombre");
+      saveTask({
+        nombre: "",
+      });
+    }
+  }, [selectedtask]);
 
   // state del formulario, traigo saveTask
   const [task, saveTask] = useState({
-    name: "",
+    nombre: "",
   });
 
   // extraer el nombre del proyecto
-  const { name } = task;
+  const { nombre } = task;
 
   // Si no hay proyecto seleccionado muestra esto y corta ejecución
   if (!project) return null;
@@ -38,22 +60,29 @@ const FormTask = () => {
     e.preventDefault();
 
     //Validar formulario
-    if (name.trim() === "") {
+    if (nombre.trim() === "") {
       validateTask();
       return;
     }
-    
-    // agregar la tarea al state de TAREAS
-    task.proyecto = currentProject._id; // traigo id proyecto actual
-    addTask(task); // le paso el objeto tarea
+
+    // si es nueva tarea agregar la tarea al state de tareas
+    if (selectedtask === null) {
+      task.proyecto = currentProject._id; // traigo id proyecto actual
+      addTask(task); // le paso el objeto tarea
+    } else {
+      // Si es edición, actualizar tarea existente
+       updateTask(task);
+       // Elimina tareaseleccionada del state
+       cleanTask(task);
+    }
 
     // Obtener tareas del proyecto actual
-    getTasksByProjectId(currentProject.id)
+    getTasksByProjectId(currentProject._id);
 
     //reiniciar el form
     saveTask({
-      name: ''
-    })
+      nombre: "",
+    });
   };
 
   return (
@@ -64,8 +93,8 @@ const FormTask = () => {
             type="text"
             className="input-text"
             placeholder="Nombre Tarea..."
-            name="name"
-            value={name}
+            name="nombre"
+            value={nombre}
             onChange={handleChange}
           />
         </div>
@@ -74,7 +103,7 @@ const FormTask = () => {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value="Agregar Tarea"
+            value={selectedtask ? "Guardar Tarea" : "Agregar Tarea"}
           />
         </div>
       </form>

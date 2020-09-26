@@ -1,6 +1,6 @@
 import {
-    PROJECT_TASKS, ADD_TASK, TASK_VALIDATE, TASK_DELETE,
-    TASK_UPDATE, TASK_STATE, CURRENT_TASK, CLEAN_TASK
+    PROJECT_TASKS, ADD_TASK, VALIDATE_TASK, DELETE_TASK,
+    UPDATE_TASK, SELECT_CURRENT_TASK, CLEAN_TASK
 } from '../../types';
 
 export default (state, action) => {
@@ -22,13 +22,13 @@ export default (state, action) => {
                 errortask: false, //para resetearlo
             }
 
-        case TASK_VALIDATE:
+        case VALIDATE_TASK:
             return {
                 ...state,
                 errortask: true
             }
 
-        case TASK_DELETE:
+        case DELETE_TASK:
             return {
                 ...state, // paso copia del state y filtro todas excepto la que le paso
                 projecttasks: state.projecttasks.filter(
@@ -36,15 +36,19 @@ export default (state, action) => {
                 )
             }
 
-        case TASK_UPDATE:
-        case TASK_STATE:
-            return {
-                ...state, projecttasks: state.projecttasks.map(task => task._id !== action.payload.id)
-            }
-
-        case CURRENT_TASK:
+        case SELECT_CURRENT_TASK:
             return {
                 ...state, selectedtask: action.payload
+            }
+
+        case UPDATE_TASK:
+            return {
+                ...state,
+                projecttasks: state.projecttasks.map(task => //recorro array de tareas
+                    task._id === action.payload._id ? // si coinciden los ids
+                        action.payload //le paso el action.payload que es la tarea actualizada
+                        : task // caso contrario le paso tarea sin actualizar
+                )
             }
 
         case CLEAN_TASK:
