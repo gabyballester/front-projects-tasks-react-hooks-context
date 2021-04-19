@@ -12,6 +12,9 @@
 yarn install
 ```
 
+#### Variables de entorno
+Renombra `.env.example` a `.env` y configura las variables
+
 #### Arranque
 ```
 yarn start
