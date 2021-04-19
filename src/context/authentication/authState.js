@@ -40,7 +40,6 @@ const AuthState = props => {
             //Obtener el usuario
             getAuthUserFromLocalStorage()
         } catch (error) {
-            // console.log(error.response.data.msg);
             const alert = {
                 msg: error.response.data.msg,
                 category: 'alerta-error'
@@ -69,7 +68,6 @@ const AuthState = props => {
                 }
             })
         } catch (error) {
-            console.log(error);
             dispatch({ type: LOGIN_ERROR })
         }
     }
@@ -85,7 +83,6 @@ const AuthState = props => {
             //Obtener el usuario
             getAuthUserFromLocalStorage()
         } catch (error) {
-            console.log(error.response.data.msg);
             const alert = {
                 msg: error.response.data.msg,
                 category: 'alerta-error'

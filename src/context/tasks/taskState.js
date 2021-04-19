@@ -34,19 +34,17 @@ const TaskState = props => {
         try {
             dispatch({ type: PROJECT_TASKS, payload: result.data.tareas })
         } catch (error) {
-            console.log(error);
+            return error
         }
     };
 
     // Agregar una tarea al proyecto seleccionado
     const addTask = async task => { //pasamos objeto task
-        console.log('entra addTask');
         try {
             const result = await clienteAxios.post('/api/tareas', task)
-            console.log(result);
             dispatch({ type: ADD_TASK, payload: result.data.tarea })
         } catch (error) {
-            console.log(error);
+            return error
         }
     }
 
@@ -65,7 +63,7 @@ const TaskState = props => {
                 payload: id
             })
         } catch (error) {
-            console.log(error);
+            return error
         }
     }
 
@@ -88,7 +86,7 @@ const TaskState = props => {
                 payload: result.data.tarea
             })
         } catch (error) {
-            console.log(error.response);
+            return error
         }
     }
 

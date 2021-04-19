@@ -5,7 +5,7 @@ import AuthContext from "../../context/authentication/authContext";
 const PrivateRoute = ({ component: Component, ...props }) => {
   const authContext = useContext(AuthContext);
   // extraemos authenticated y la función de envío usuario de storage a headers
-  const { authenticated, loading, getAuthUserFromLocalStorage } = authContext;
+  const { authenticated, getAuthUserFromLocalStorage } = authContext;
 
   useEffect(() => {
     getAuthUserFromLocalStorage();
