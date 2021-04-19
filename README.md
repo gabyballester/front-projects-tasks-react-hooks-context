@@ -2,7 +2,7 @@
 
 - Este repositorio es sólo el frontend de este proyecto.
 - El repo del backend lo encontrarás aquí:  
-[https://gabyballester@bitbucket.org/gabyballester/node-mongo-express-projects-tasks](https://gabyballester@bitbucket.org/gabyballester/node-mongo-express-projects-tasks)
+[https://github.com/gabyballester/api-projects-tasks-node-mongo-express](https://github.com/gabyballester/api-projects-tasks-node-mongo-express)
 
 
 ***
